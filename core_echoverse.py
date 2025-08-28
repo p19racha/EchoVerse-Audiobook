@@ -36,7 +36,6 @@ def save_text(text: str, tone: str) -> Path:
     path.write_text(text, encoding="utf-8")
     return path
 
-# ---------- Ollama helpers ----------
 def _ollama_models(base_url: str):
     url = f"{base_url.rstrip('/')}/api/tags"
     try:
@@ -114,7 +113,6 @@ def rewrite_with_ollama(
         raise RuntimeError(f"Unexpected Ollama response: {json.dumps(data)[:500]}")
     return data["response"].strip()
 
-# ---------- gTTS ----------
 def tts_with_gtts_to_bytes(text: str, lang: str = "en", tld: str = "com", slow: bool = False) -> bytes:
     if not _HAS_GTTS:
         raise RuntimeError("gTTS not installed. Install with: pip install gTTS")
